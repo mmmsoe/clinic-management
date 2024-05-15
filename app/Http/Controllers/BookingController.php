@@ -57,6 +57,6 @@ class BookingController extends Controller
             'is_booked' => true
         ]);
 
-        return response()->json(['success' => 'Operation hour added successfully!']);
+        return response()->json(['message' => 'Operation hour added successfully!']);
     }
 }
