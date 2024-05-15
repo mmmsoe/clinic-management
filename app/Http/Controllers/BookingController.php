@@ -23,29 +23,11 @@ class BookingController extends Controller
 
     public function getOperationHours($clinicId, $day)
     {
-        // Fetch operation hours based on clinic ID and day
-        // $operationHours = OperationHour::whereHas('clinicDay', function ($query) use ($clinicId, $day) {
-        //     $query->where('clinic_id', $clinicId)->where('day', $day);
-        // })->get();
-
         $operationHours = OperationHour::whereHas('clinicDay', function ($query) use ($clinicId, $day) {
             $query->where('clinic_id', $clinicId)->where('day', $day);
         })->where('is_booked', 1)->get();
 
         return response()->json($operationHours);
-    }
-
-    public function bookOperationHour(Request $request)
-    {
-        $operationHour = OperationHour::find($request->operation_hour_id);
-        if ($operationHour) {
-            $operationHour->is_booked = true;
-            $operationHour->save();
-
-            return response()->json(['message' => 'Operation hour booked successfully!']);
-        }
-
-        return response()->json(['message' => 'Operation hour not found!'], 404);
     }
 
     public function cancelOperationHour(Request $request)
@@ -75,6 +57,6 @@ class BookingController extends Controller
             'is_booked' => true
         ]);
 
-        return response()->json(['message' => 'Operation hour added successfully!']);
+        return response()->json(['success' => 'Operation hour added successfully!']);
     }
 }

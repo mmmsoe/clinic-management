@@ -23,9 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/operation-hours/{clinicId}/{day}', [BookingController::class, 'getOperationHours']);
     Route::post('/cancel-operation-hour', [BookingController::class, 'cancelOperationHour']);
     Route::post('/add-operation-hour', [BookingController::class, 'addOperationHour']);
-    Route::delete('/cancel-vacation', [BookingController::class, 'cancelVacation']);
-    // Route::post('/make-holiday', [BookingController::class, 'makeHoliday']);
-    // Route::post('/make-holiday', [BookingController::class, 'makeHoliday']);
+    Route::delete('/cancel-vacation', [BookingController::class, 'cancelVacation']);   
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
